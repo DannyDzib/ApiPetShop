@@ -12,16 +12,18 @@ namespace ApiPetShop.Controllers
     [Route("[controller]")]
     [ApiController]
     // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class CarShoppingController : ControllerBase
+    public class PurchalesController : ControllerBase
     {       
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CarShopping value)
+        public async Task<IActionResult> Post( Purchale value)
         {
             using (var _db = new PetShopContext())
             {
-                _db.Add(new CarShopping
+                var date = DateTime.Now;
+                _db.Add(new Purchale
                 {
+                    Date = date,
                     IdUser = value.IdUser,
                     IdProduct = value.IdProduct
 
@@ -39,8 +41,8 @@ namespace ApiPetShop.Controllers
             {
                 try
                 {
-                    var CarShopping = await _db.CarShopping.FindAsync(id);
-                    _db.Remove(CarShopping);
+                    var purchale = await _db.Purchale.FindAsync(id);
+                    _db.Remove(purchale);
                     await _db.SaveChangesAsync();
                     return Ok();
                 }

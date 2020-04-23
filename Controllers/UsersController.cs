@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +12,7 @@ namespace ApiPetShop.Controllers
     [Route("[controller]")]
     [ApiController]
    // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class ProductsController : ControllerBase
+    public class UsersController : ControllerBase
     {
         // GET api/values
         [HttpGet("{id?}")]
@@ -22,21 +22,22 @@ namespace ApiPetShop.Controllers
             {
                 if (id != null)
                 {
-                    var product = await _db.Product.FindAsync(id);
-                    return Ok(new Product
+                    var user = await _db.User.FindAsync(id);
+                    return Ok(new User
                     {
-                        Id = product.Id,
-                        Name = product.Name,
-                        Stock = product.Stock,
-                        Description = product.Description,
-                        Photo = product.Photo,
-                        Price = product.Price
+                        Id = user.Id,
+                        FirshName = user.FirshName,
+                        LastName = user.LastName,
+                        Email = user.Email,
+                        Address = user.Address,
+                        Tel = user.Tel,
+                        Photo = user.Photo
                     });
                 }
                 else
                 {
-                    var products = await _db.Product.ToListAsync();
-                    return Ok(products);
+                    var users = await _db.User.ToListAsync();
+                    return Ok(users);
 
                 }
             }
@@ -44,17 +45,20 @@ namespace ApiPetShop.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Product value)
+        public async Task<IActionResult> Post( User value)
         {
             using (var _db = new PetShopContext())
             {
-                _db.Add(new Product
+                _db.Add(new User
                 {
-                    Name = value.Name,
-                    Stock = value.Stock,
-                    Description = value.Description,
-                    Photo = value.Photo,
-                    Price = value.Price
+                    Id = value.Id,
+                    FirshName = value.FirshName,
+                    LastName = value.LastName,
+                    Email = value.Email,
+                    Address = value.Address,
+                    Tel = value.Tel,
+                    Password = value.Password,
+                    Photo = value.Photo
 
                 });
                 await _db.SaveChangesAsync();
@@ -64,19 +68,22 @@ namespace ApiPetShop.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Product value)
+        public async Task<IActionResult> Put(int id, User value)
         {
             using (var _db = new PetShopContext())
             {
 
                 try
                 {
-                    var Product = await _db.Product.FindAsync(id);
-                    Product.Name = value.Name;
-                    Product.Stock = value.Stock;
-                    Product.Description = value.Description;
-                    Product.Photo = value.Photo;
-                    Product.Price = value.Price;
+                    var user = await _db.User.FindAsync(id);
+                    user.Id = value.Id;
+                    user.FirshName = value.FirshName;
+                    user.LastName = value.LastName;
+                    user.Email = value.Email;
+                    user.Address = value.Address;
+                    user.Tel = value.Tel;
+                    user.Password = value.Password;
+                    user.Photo = value.Photo;
                     await _db.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -97,8 +104,8 @@ namespace ApiPetShop.Controllers
             {
                 try
                 {
-                    var product = await _db.Product.FindAsync(id);
-                    _db.Remove(product);
+                    var user = await _db.User.FindAsync(id);
+                    _db.Remove(user);
                     await _db.SaveChangesAsync();
                     return Ok();
                 }
