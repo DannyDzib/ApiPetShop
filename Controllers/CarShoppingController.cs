@@ -11,7 +11,7 @@ namespace ApiPetShop.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CarShoppingController : ControllerBase
     {       
         // POST api/values
