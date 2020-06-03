@@ -25,7 +25,7 @@ namespace ApiPetShop.DataBases
             if (!optionsBuilder.IsConfigured)
             {
     // #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=ec2-52-202-146-43.compute-1.amazonaws.com;Port=5432;Database=d5koaaqgc8s9d2;Username=tpqsfjxgfckxxh;Password=7b57fa3eb44c6c110ada37a02cade7a8d9ed260594ab718de31d3a171576a3a0;Pooling=true; Use SSL Stream=True;SSL Mode=Require;TrustServerCertificate=True;");
+                optionsBuilder.UseNpgsql("Host=ec2-3-222-30-53.compute-1.amazonaws.com;Port=5432;Database=dfuaes5arv2ru6;Username=nffqnbhfgqvyqu;Password=e6c596397a2ddb8fbae47ea18e69e86bb38a7eb708e2ce042588bba124c1c828;Pooling=true; Use SSL Stream=True;SSL Mode=Require;TrustServerCertificate=True;");
             }
         }
 
